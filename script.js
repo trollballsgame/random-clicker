@@ -4,7 +4,9 @@ function gebid(id) {
 
 const text = gebid('text');
 const og = gebid('original');
+const multip = gebid('mul');
 let clicks = 0;
+let mul = 1;
 
 setInterval(() => {
     const cloneCount = document.querySelectorAll('.clone').length;
@@ -22,13 +24,19 @@ setInterval(() => {
 
         clone.addEventListener('click', () => {
             clone.remove();
-            clicks++;
+            clicks = clicks + 1 * multip
         });
 
         document.body.appendChild(clone);
     }
 }, 1000);
 
+multip.onclick = () => {
+    if (clicks >= 100) {
+        multip++
+        clicks -= 100
+    }
+}
 setInterval(() => {
     const cloneCount = document.querySelectorAll('.clone').length;
     text.textContent = `Clicks: ${clicks} Clones: ${cloneCount}`;
