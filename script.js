@@ -4,7 +4,7 @@ function gebid(id) {
 
 const text = gebid('text');
 const og = gebid('original');
-const mulButton = gebid('mul');
+const mulButton = gebid('mul');  // this is your button element
 let clicks = 0;
 let multiplier = 1;
 
@@ -24,7 +24,7 @@ setInterval(() => {
 
         clone.addEventListener('click', () => {
             clone.remove();
-            clicks += multiplier;
+            clicks += multiplier; 
         });
 
         document.body.appendChild(clone);
