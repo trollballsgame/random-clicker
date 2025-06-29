@@ -4,15 +4,15 @@ function gebid(id) {
 
 const text = gebid('text');
 const og = gebid('original');
-const multip = gebid('mul');
+const mulButton = gebid('mul');
 let clicks = 0;
-let mul = 1;
+let multiplier = 1;
 
 setInterval(() => {
     const cloneCount = document.querySelectorAll('.clone').length;
-    if (cloneCount < 15 && cloneCount >= 0) {
+    if (cloneCount < 15) {
         const clone = og.cloneNode(true);
-        clone.classList.add('clone')
+        clone.classList.add('clone');
         clone.style.display = 'block';
         clone.style.position = 'absolute';
 
@@ -24,20 +24,21 @@ setInterval(() => {
 
         clone.addEventListener('click', () => {
             clone.remove();
-            clicks = clicks + 1 * multip
+            clicks += multiplier;
         });
 
         document.body.appendChild(clone);
     }
 }, 1000);
 
-multip.onclick = () => {
+mulButton.onclick = () => {
     if (clicks >= 100) {
-        multip++
-        clicks -= 100
+        multiplier++;
+        clicks -= 100;
     }
-}
+};
+
 setInterval(() => {
     const cloneCount = document.querySelectorAll('.clone').length;
-    text.textContent = `Clicks: ${clicks} Clones: ${cloneCount}`;
+    text.textContent = `Clicks: ${clicks} | Clones: ${cloneCount} | Multiplier: x${multiplier}`;
 }, 16);
